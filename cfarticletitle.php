@@ -8,7 +8,6 @@
  */
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
 use Joomla\Component\Fields\Administrator\Helper\FieldsHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 
@@ -55,17 +54,19 @@ class PlgContentCfarticletitle extends CMSPlugin
 			{
 				return;
 			}
-			// Get the predefined field name
+			// Get the predefined field name from plugin params
 			$cfname = $this->params->def('cfname', null);
 			if ($cfname)
 			{
 				foreach ($fields as $field)
 				{
 					// Determine the value if it is (un)available from the data
-					if (array_key_exists($field->name, $data['com_fields']) && ($cfname == $field->name))
+					// && if the selected custom field form plugin params matches the current field
+					// && if field type = text
+					if ( array_key_exists($field->name, $data['com_fields']) && ($cfname == $field->name) && ($field->type =="text") )
 					{
 						$value = $data['com_fields'][$field->name] === false ? null : $data['title'];
-						$model = Factory::getApplication()->bootComponent('com_fields')->getMVCFactory()->createModel('Field', 'Administrator', ['ignore_request' => true]);
+						$model = $this->app->bootComponent('com_fields')->getMVCFactory()->createModel('Field', 'Administrator', ['ignore_request' => true]);
 						$model->setFieldValue($field->id, $item->id, $value);
 					}
 				}

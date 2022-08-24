@@ -8,8 +8,7 @@
 	<authorEmail>info@tlwebdesign.nl</authorEmail>
 	<authorUrl>www.tlwebdesign.nl</authorUrl>
 	<version>NL</version>
-	<description>A Joomla content plugin to automatically put an article title in a specified custom field
-</description>
+	<description>A Joomla content plugin to automatically put an article title in a specified custom field of type text</description>
 	<files>
 		<filename plugin="cfarticletitle">cfarticletitle.php</filename>
 	</files>
@@ -21,7 +20,7 @@
 					type="sql"
 					label="Custom field"
 					default=""
-					query="SELECT name, title FROM #__fields WHERE state = 1"
+					query="SELECT name, title FROM #__fields WHERE state = 1 AND type = 'text'"
 					key_field="name"
 					value_field="title"
 					required="true"
