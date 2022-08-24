@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="upgrade">
+	<name>Content - Custom Field Article Title</name>
+	<author>TLWebdesign</author>
+	<creationDate>2022-08-24</creationDate>
+	<copyright>(C) 2022 TLWebdesign.nl</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<authorEmail>info@tlwebdesign.nl</authorEmail>
+	<authorUrl>www.tlwebdesign.nl</authorUrl>
+	<version>NL</version>
+	<description>A Joomla content plugin to automatically put an article title in a specified custom field
+</description>
+	<files>
+		<filename plugin="cfarticletitle">cfarticletitle.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="cfname"
+					type="sql"
+					label="Custom field"
+					default=""
+					query="SELECT name AS value, title AS text FROM #__fields WHERE state = 1"
+					>
+					    <option value="">Please select a custom field</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
