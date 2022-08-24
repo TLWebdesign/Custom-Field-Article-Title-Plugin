@@ -21,8 +21,11 @@
 					type="sql"
 					label="Custom field"
 					default=""
-					query="SELECT name AS value, title AS text FROM #__fields WHERE state = 1"
-					>
+					query="SELECT name, title FROM #__fields WHERE state = 1"
+					key_field="name"
+					value_field="title"
+					required="true"
+				>
 					    <option value="">Please select a custom field</option>
 				</field>
 			</fieldset>
